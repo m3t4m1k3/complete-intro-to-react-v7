@@ -1,1 +1,1 @@
-# complete-intro-to-react-v7
+# Complete Intro to React v7
