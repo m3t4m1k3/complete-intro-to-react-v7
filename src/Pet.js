@@ -1,4 +1,4 @@
-import { Link, link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Pet = ({ name, animal, breed, images, location, id }) => {
   if (images.length) {
@@ -8,7 +8,7 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
   return (
     <Link
       to={`/details/${id}`}
-      className="pet"
+      className="relative block"
     >
       <div className="image-container">
         <img
@@ -16,7 +16,7 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
           alt={name}
         />
       </div>
-      <div className="info">
+      <div className="absolute bottom-0 left-0 bg-gradient-to-tr from-white to-transparent pr-2 pt-2">
         <h1>{name}</h1>
         <h2>
           {animal} – {breed} – {location}

@@ -4,20 +4,32 @@ import Carousel from "./Carousel";
 import Modal from "./Modal";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
+import { PetAPIResponse, Pet, Animal } from "./APIResponsesTypes";
 
-class Details extends Component {
-  state = { loading: true, showModal: false };
+class Details extends Component<{ params: { id?: string } }> {
+  state = {
+    loading: true,
+    showModal: false,
+    animal: "" as Animal,
+    breed: "",
+    city: "",
+    state: "",
+    description: "",
+    name: "",
+    images: [] as string[],
+  };
 
   async componentDidMount() {
     const response = await fetch(
       `http://pets-v2.dev-apis.com/pets?id=${this.props.params.id}`
     );
-    const json = await response.json();
+    const json = (await response.json()) as PetAPIResponse;
 
     this.setState({ loading: false, ...json.pets[0] });
   }
 
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  adopt = () => (window.location.href = "http://bit.ly/pet-adopt");
 
   render() {
     if (this.state.loading) {
